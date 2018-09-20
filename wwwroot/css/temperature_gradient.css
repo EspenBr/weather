@@ -1,0 +1,163 @@
+﻿@keyframes temperatureAnimation_10 {
+    from {
+        background: rgb(255, 255, 255);
+    }
+    to {
+        background: rgb(118, 248, 86);
+    }
+}
+
+@keyframes temperatureAnimation_15 {
+    from {
+        background: rgb(255, 255, 255);
+    }
+    to {
+        background: rgb(227, 255, 71);
+    }
+}
+
+@keyframes temperatureAnimation_20 {
+    from {
+        background: rgb(255, 255, 255);
+    }
+    to {
+        background: rgb(255, 180, 19);
+    }
+}
+
+@keyframes temperatureAnimation_25 {
+    from {
+        background: rgb(255, 255, 255);
+    }
+    to {
+        background: rgb(255, 133, 19);
+    }
+}
+
+@keyframes temperatureAnimation_30 {
+    from {
+        background: rgb(255, 255, 255);
+    }
+    to {
+        background: rgb(253, 81, 2);
+    }
+}
+
+@keyframes temperatureAnimation_35 {
+    from {
+        background: rgb(255, 255, 255);
+    }
+    to {
+        background: rgb(250, 20, 20);
+    }
+}
+
+@keyframes temperatureAnimation_0 {
+    from {
+        background: rgb(255, 255, 255);
+    }
+    to {
+        background: rgb(255, 255, 255);
+    }
+}
+
+@keyframes temperatureAnimation_5_neg {
+    from {
+        background: rgb(255, 255, 255);
+    }
+    to {
+        background: rgb(158, 213, 250);
+    }
+}
+
+@keyframes temperatureAnimation_10_neg {
+    from {
+        background: rgb(255, 255, 255);
+    }
+    to {
+        background: rgb(109, 145, 245);
+    }
+}
+
+@keyframes temperatureAnimation_15_neg {
+    from {
+        background: rgb(255, 255, 255);
+    }
+    to {
+        background: rgb(92, 68, 228);
+    }
+}
+
+@keyframes temperatureAnimation_20_neg {
+    from {
+        background: rgb(255, 255, 255);
+    }
+    to {
+        background: rgb(49, 30, 158);
+    }
+}
+
+@keyframes temperatureAnimation_25_neg {
+    from {
+        background: rgb(255, 255, 255);
+    }
+    to {
+        background: rgb(12, 13, 78);
+    }
+}
+
+.tempAni_35 {
+    animation-name: temperatureAnimation_35;
+}
+
+.tempAni_30 {
+    animation-name: temperatureAnimation_30;
+}
+
+.tempAni_25 {
+    animation-name: temperatureAnimation_25;
+}
+
+.tempAni_20 {
+    animation-name: temperatureAnimation_20;
+}
+
+.tempAni_15 {
+    animation-name: temperatureAnimation_15;
+}
+
+.tempAni_10 {
+    animation-name: temperatureAnimation_10;
+}
+
+.tempAni_5 {
+    animation-name: temperatureAnimation_5;
+}
+
+.tempAni_0 {
+    animation-name: temperatureAnimation_0;
+}
+
+.tempAni_5_neg {
+    animation-name: temperatureAnimation_5_neg;
+}
+
+.tempAni_10_neg {
+    animation-name: temperatureAnimation_10_neg;
+}
+
+.tempAni_15_neg {
+    animation-name: temperatureAnimation_15_neg;
+}
+
+.tempAni_20_neg {
+    animation-name: temperatureAnimation_20_neg;
+}
+
+.tempAni_25_neg {
+    animation-name: temperatureAnimation_25_neg;
+}
+
+.tempAni_30_neg {
+    animation-name: temperatureAnimation_30_neg;
+}
