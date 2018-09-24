@@ -54,7 +54,6 @@ class Temperature extends React.Component {
     render() {
         //const denStyle = { container: { background: this.props.data.temp_bg_color, animation: 'fadein 2s' } };
         //const denStyle = {container { }}
-
         return (
             <div className="temp_container">
                 <div className="de">

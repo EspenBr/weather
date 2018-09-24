@@ -1,0 +1,26 @@
+{
+    "deploy": {
+        "targets": [
+            {
+                "type": "local",
+                "name": "Local weather",
+                "description": "Local weather web",
+                "dir": "E:/inetpub/wwwroot/vaer/Bones"
+            }
+        ],
+        "packages": [
+            {
+                "name": "Version 2.3.4",
+                "description": "Package version 2.3.4",
+                "files": [
+                    "**/*.php",
+                    "/*.json"
+                ],
+                "exclude": [
+                    "tests/**"
+                ],
+                "deployOnSave": true
+            }
+        ]
+    }
+}

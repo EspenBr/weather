@@ -8,6 +8,8 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 using weather.Models;
 
 namespace weather.Controllers
@@ -75,7 +77,7 @@ namespace weather.Controllers
             string history = "M ";
             float previous = 0;
 
-            MySqlConnection conn = new MySqlConnection("Data Source=localhost;database=Weather;User=root;Password=Leveller73");
+            MySqlConnection conn = new MySqlConnection("Data Source=localhost;database=Weather;User=root;Password=Leveller73;SslMode=None");
             MySqlCommand com = new MySqlCommand($"SELECT time FROM weather.weather where datetime like '{datetime}%' order by datetime desc LIMIT 1;", conn);
 
             conn.Open();
@@ -95,6 +97,7 @@ namespace weather.Controllers
             deg_factor = 400 / temp_diff;
             tempHistory.zero_point = tempHistory.max - (tempHistory.diff / 2);
             //Finn historiske verdier
+            //Parallel.For(0, 49, i =>
             for (int i = 0; i < 50; i++)
             {
                 com.CommandText = $"SELECT temperature FROM weather.weather where datetime like date_format(date_sub(sysdate(), interval {i * 30} MINUTE),'%Y%m%d%H%i%') order by datetime desc LIMIT 1 ";
@@ -111,6 +114,7 @@ namespace weather.Controllers
                 }
                 reader.Close();
             }
+            //);
 
             history = history.Substring(0, history.Length - 2);
 
