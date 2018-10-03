@@ -45,7 +45,7 @@ namespace weather.Controllers
             _item.datetime = _reader.GetString(10);
             _item.rain_bar_top_value = (int)(Math.Ceiling(_item.rain_day / 10.0d) * 10);
             _item.rain_bar_mid_value = _item.rain_bar_top_value / 2;
-            _item.rain_bar_day_value = _reader.GetFloat(5) * (100 / _item.rain_bar_top_value);
+            _item.rain_bar_day_value = _reader.GetFloat(5) * (400 / _item.rain_bar_top_value);
             if (_item.curr_temp < 0)
             {
                 _item.temp_bg_color = "rgb(" + (255 - (8.5d * _item.curr_temp)).ToString() + ", " + (255 - (8.5d * _item.curr_temp)).ToString() + ", 226)";
@@ -63,6 +63,7 @@ namespace weather.Controllers
             DataTable dtRain = new DataTable();
             dtRain.Load(_reader);
             _item.rain_last_hour = _item.rain_day - float.Parse(dtRain.Rows[0][0].ToString());
+            _item.rain_last_hour = (float)Math.Round((double)_item.rain_last_hour, 1);
             _conn.Close();
             return _item;
         }
@@ -96,23 +97,35 @@ namespace weather.Controllers
             temp_diff = tempHistory.max - tempHistory.min;
             deg_factor = 400 / temp_diff;
             tempHistory.zero_point = tempHistory.max - (tempHistory.diff / 2);
+            tempHistory.zero_point = (float)Math.Round(tempHistory.zero_point, 1);
             //Finn historiske verdier
             //Parallel.For(0, 49, i =>
-            for (int i = 0; i < 50; i++)
+
+            com.CommandText = "select date,time,round(avg(temperature),1) as temperature from weather GROUP BY UNIX_TIMESTAMP(datetime) DIV 1800 order by datetime desc limit 50";
+            reader = com.ExecuteReader();
+            string strTest = "";
+            int i = 0;
+            while (reader.Read()) //(int i = 0; i < 50; i++)
             {
+
+                /*
                 com.CommandText = $"SELECT temperature FROM weather.weather where datetime like date_format(date_sub(sysdate(), interval {i * 30} MINUTE),'%Y%m%d%H%i%') order by datetime desc LIMIT 1 ";
-                reader = com.ExecuteReader();
-                //                _reader.Read();
+                                _reader.Read();
                 if (reader.Read())
                 {
                     previous = reader.GetFloat(0);
-                    history += (30 + (10 * i)).ToString() + " " + (Math.Round(200 + ((tempHistory.zero_point - reader.GetFloat(0)) * deg_factor), 0)).ToString() + " L ";
-                }
-                else
-                {
-                    history += (30 + (10 * i)).ToString() + " " + (Math.Round(200 + ((tempHistory.zero_point - previous) * deg_factor), 0)).ToString() + " L ";
-                }
-                reader.Close();
+                    */
+                history += (522 - (10 * i)).ToString() + " " + (Math.Round(470 - ((reader.GetFloat(2) - tempHistory.min) * deg_factor), 0)).ToString() + " L ";
+                strTest += reader.GetFloat(2).ToString() + " - ";
+                i++;
+                /*
+            }
+            else
+            {
+            history += (30 + (10 * i)).ToString() + " " + (Math.Round(270 - ((tempHistory.zero_point - previous) * deg_factor), 0)).ToString() + " L ";
+            }
+            reader.Close();
+                */
             }
             //);
 

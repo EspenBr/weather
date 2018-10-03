@@ -94,6 +94,19 @@ body {
 
 /*Temperatur*/
 
+.path {
+    stroke-dasharray: 2000;
+    stroke-dashoffset: 2000;
+    animation: dash 3s linear forwards;
+    animation-delay: 2s;
+}
+
+@keyframes dash {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
 @keyframes fadein {
     from {
         background: white;
@@ -272,7 +285,8 @@ body {
 }
 
 .rainSvg {
-    width: 100px;
+    width: 120px;
+    height: 300px;
 }
 
 .headerTable {
