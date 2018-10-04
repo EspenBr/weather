@@ -1,0 +1,7 @@
+D:\Projects\weather
+--output-path=obj\Debug\netcoreapp2.0\
+--application-name=weather
+--content-root=D:\Projects\weather
+--file=D:\Projects\weather\Views\Home\Index.cshtml
+--file=D:\Projects\weather\Views\_ViewImports.cshtml
+--file=D:\Projects\weather\Views\_ViewStart.cshtml

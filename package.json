@@ -1,4 +1,7 @@
 {
+    "name": "weather-app",
+    "main": "weather.jsx",
+    "private": true,
     "requires": true,
     "lockfileVersion": 1,
     "dependencies": {
@@ -8,5 +11,9 @@
             "resolved": "https://registry.npmjs.org/moment/-/moment-2.22.2.tgz",
             "version": "2.22.2"
         }
+    },
+    "devDependencies": {
+        "webpack": "^4.20.2",
+        "webpack-cli": "^3.1.2"
     }
 }

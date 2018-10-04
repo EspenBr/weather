@@ -69,6 +69,7 @@ namespace weather.Controllers
         }
         [HttpGet("{datetime}")]
         [EnableCors("MyPolicy")]
+
         public TemperatureHistory GetTemp(string datetime)
         {
             TemperatureHistory tempHistory = new TemperatureHistory();
@@ -76,7 +77,6 @@ namespace weather.Controllers
             float temp_diff = 0;
             float deg_factor = 0;
             string history = "M ";
-            float previous = 0;
 
             MySqlConnection conn = new MySqlConnection("Data Source=localhost;database=Weather;User=root;Password=Leveller73;SslMode=None");
             MySqlCommand com = new MySqlCommand($"SELECT time FROM weather.weather where datetime like '{datetime}%' order by datetime desc LIMIT 1;", conn);
@@ -98,9 +98,8 @@ namespace weather.Controllers
             deg_factor = 400 / temp_diff;
             tempHistory.zero_point = tempHistory.max - (tempHistory.diff / 2);
             tempHistory.zero_point = (float)Math.Round(tempHistory.zero_point, 1);
-            //Finn historiske verdier
-            //Parallel.For(0, 49, i =>
 
+            //Finn historiske verdier
             com.CommandText = "select date,time,round(avg(temperature),1) as temperature from weather GROUP BY UNIX_TIMESTAMP(datetime) DIV 1800 order by datetime desc limit 50";
             reader = com.ExecuteReader();
             string strTest = "";
@@ -108,26 +107,10 @@ namespace weather.Controllers
             while (reader.Read()) //(int i = 0; i < 50; i++)
             {
 
-                /*
-                com.CommandText = $"SELECT temperature FROM weather.weather where datetime like date_format(date_sub(sysdate(), interval {i * 30} MINUTE),'%Y%m%d%H%i%') order by datetime desc LIMIT 1 ";
-                                _reader.Read();
-                if (reader.Read())
-                {
-                    previous = reader.GetFloat(0);
-                    */
                 history += (522 - (10 * i)).ToString() + " " + (Math.Round(470 - ((reader.GetFloat(2) - tempHistory.min) * deg_factor), 0)).ToString() + " L ";
                 strTest += reader.GetFloat(2).ToString() + " - ";
                 i++;
-                /*
             }
-            else
-            {
-            history += (30 + (10 * i)).ToString() + " " + (Math.Round(270 - ((tempHistory.zero_point - previous) * deg_factor), 0)).ToString() + " L ";
-            }
-            reader.Close();
-                */
-            }
-            //);
 
             history = history.Substring(0, history.Length - 2);
 
@@ -136,5 +119,7 @@ namespace weather.Controllers
 
             return tempHistory;// _history;
         }
+
+
     }
 }

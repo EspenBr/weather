@@ -150,7 +150,7 @@ class Temperatures extends React.Component {
 class Weather extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { data: [], hist: [] };
+        this.state = { data: [], hist: [], showMondal: false };
     }
 
     loadDataFromServer() {
@@ -186,8 +186,13 @@ class Weather extends React.Component {
         setInterval(this.loadDataFromServer, this.props.pollInterval);
     }
 
+    handleToggleModal() {
+        this.setState({ showModal: !this.state.showModal });
+    }
+
     render() {
         let thisHour = parseInt(moment(this.state.data.date).format('HH'));
+        const { showMondal } = this.state.showMondal;
         if (this.state.data.rain_last_hour == null) document.documentElement.style.setProperty('--backgroundColor', 'white')
         else {
             if (this.state.data.rain_last_hour > 1) {
@@ -219,11 +224,24 @@ class Weather extends React.Component {
                         <td className="weatherCell"><TemperatureHist data={this.state.hist} /></td>
                     </tr>
                 </tbody></table>
+                <button
+                    type="button"
+
+                    onClick={() => this.handleToggleModal()}
+                >
+                    Open Modal
+        </button>
+
+
             </div>
         );
     }
 }
-
+/*
+<Rekorder onCloseRequest={() => this.handleToggleModal()}>
+    <img src="https://placeimg.com/900/650/nature" alt="Nature" />
+</Rekorder>
+*/
 ReactDOM.render(
     <Weather
         pollInterval={60000} />,
